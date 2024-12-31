@@ -1,5 +1,5 @@
 {
-  "name": "node-mysql-api",
+  "name": "photo-transfer-node-mysql-api",
   "version": "1.0.0",
   "type": "commonjs",
   "main": "server.js",
