@@ -17,9 +17,10 @@ global.__basedir = __dirname;
 
 // cors stuff
 const whitelist = [
-  "http://localhost:3000",
-  "http://localhost:5173",
-  "http://172.20.10.9:5173",
+  "https://photo-transfer-by-qr.vercel.app/"
+  // "http://localhost:3000",
+  // "http://localhost:3575",
+  // "http://192.168.1.10:3575",
 ]; //white list consumers
 let corsOptions = {
   origin: function (origin, callback) {
@@ -75,3 +76,5 @@ server.listen(PORT, (err) => {
   }
   console.log(`Server is running on port ${PORT}.`);
 });
+
+module.exports = server;
