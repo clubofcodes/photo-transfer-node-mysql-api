@@ -9,7 +9,7 @@ const { Server } = require("socket.io"); // Import Socket.IO Server class
 // Create database if it doesn't exist
 // require("./utils/db"); // need fixes.
 
-const db = require("./models");
+const db = require("../models");
 
 const app = express();
 
@@ -65,8 +65,8 @@ module.exports = {
   socketObj: io,
 };
 
-require("./routes/user.routes")(app);
-require("./routes/image.routes")(app);
+require("../routes/user.routes")(app);
+require("../routes/image.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

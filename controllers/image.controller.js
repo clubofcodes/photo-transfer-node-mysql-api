@@ -1,7 +1,7 @@
 const fs = require("fs");
 const db = require("../models");
 const Image = db.images;
-const server = require("../server");
+const server = require("../api");
 const io = server.socketObj;
 
 const uploadImage = async (req, res) => {

@@ -2,10 +2,10 @@
   "name": "photo-transfer-node-mysql-api",
   "version": "1.0.0",
   "type": "commonjs",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon server.js"
+    "server": "nodemon api/index.js"
   },
   "keywords": [],
   "author": "",
