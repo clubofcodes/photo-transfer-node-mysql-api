@@ -39,6 +39,14 @@ BASE_URL=http://localhost:8080/
 
 ```
 
+## ESENTIAL: Adding DIRs into root dir structure
+
+Create `assets` and inside assets `uploads` folder. The image files will be uploaded under this path so it is mandatory to create those directories.
+
+```sh
+Final Path must be: `assets/uploads`
+```
+
 ## To run the project
 
 In the project directory, you can run:
