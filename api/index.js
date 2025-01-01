@@ -1,23 +1,26 @@
 const express = require("express");
+const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const db = require("../models");
 const dotenv = require("dotenv");
 dotenv.config();
 const http = require("http"); // Import Node's HTTP module
-const { Server } = require("socket.io"); // Import Socket.IO Server class
+const { Server } = require("socket.io");
+
+// sync method
+db.sequelize.sync();
 
 // Create database if it doesn't exist
 // require("./utils/db"); // need fixes.
 
-const db = require("../models");
-
 const app = express();
 
-global.__basedir = __dirname;
+global.__basedir = path.join(__dirname, "..");
 
 // cors stuff
 const whitelist = [
-  "https://photo-transfer-by-qr.vercel.app/"
+  "https://photo-transfer-by-qr.vercel.app/",
   // "http://localhost:3000",
   // "http://localhost:3575",
   // "http://192.168.1.10:3575",
@@ -33,9 +36,6 @@ let corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-// sync method
-db.sequelize.sync();
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -77,4 +77,4 @@ server.listen(PORT, (err) => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-module.exports = server;
+module.exports = app;

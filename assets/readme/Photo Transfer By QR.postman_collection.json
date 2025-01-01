@@ -1,0 +1,383 @@
+{
+	"info": {
+		"_postman_id": "6fc5ccf6-cd1b-4c72-bb26-ebef266a859b",
+		"name": "Photo Transfer By QR",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38010744"
+	},
+	"item": [
+		{
+			"name": "Upload Image",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-GB,en-US;q=0.9,en;q=0.8,hi;q=0.7"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:5173"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:5173/"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-site"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "x-access-token",
+						"value": "{{auth_token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local_base_url}}api/upload",
+					"host": [
+						"{{local_base_url}}api"
+					],
+					"path": [
+						"upload"
+					]
+				},
+				"description": "### API Request Description\n\nThis endpoint allows the client to upload a file using a POST request to the specified URL. The request should include a form-data body with a key \"file\" of type file.\n\n### API Response\n\nThe response to the request will have a status code of 201 and a content type of \"application/json\". The response body will contain a JSON object with a \"message\" key.\n\n``` json\n{\n   \"message\": string\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Uploaded Images List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Name</th>\r",
+							"        <th>URL</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    {{#each response}}\r",
+							"        <tr>\r",
+							"            <td>{{name}}</td>\r",
+							"            <td>{{url}}</td>\r",
+							"        </tr>\r",
+							"    {{/each}}\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return {response: pm.response.json()}\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-GB,en-US;q=0.9,en;q=0.8,hi;q=0.7"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:5173"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:5173/"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-site"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "x-access-token",
+						"value": "{{auth_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{local_base_url}}api/getImages/",
+					"host": [
+						"{{local_base_url}}api"
+					],
+					"path": [
+						"getImages",
+						""
+					]
+				},
+				"description": "### Get Images\n\nThis endpoint retrieves a list of images.\n\n#### Request\n\nThe request does not require any parameters.\n\n#### Response\n\nThe response will be a JSON array containing objects with the following properties:\n\n- `name` (string): The name of the image.\n    \n- `url` (string): The URL of the image.\n    \n\nExample response:\n\n``` json\n[\n    {\n        \"name\": \"\",\n        \"url\": \"\"\n    }\n]\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Download Img By Name",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-GB,en-US;q=0.9,en;q=0.8,hi;q=0.7"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:5173"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:5173/"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-site"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzM1NTk0OTg5LCJleHAiOjE3MzU2ODEzODl9.jqLzjO5M4j4VPpTQacMTEggINuF6IAJDv_sIAIdZbes"
+					}
+				],
+				"url": {
+					"raw": "{{local_base_url}}api/images/:name",
+					"host": [
+						"{{local_base_url}}api"
+					],
+					"path": [
+						"images",
+						":name"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "name",
+							"value": "THE_UPLOADED_FILENAME"
+						}
+					]
+				},
+				"description": "The API endpoint retrieves an image with the specified name.\n\n### Request\n\nThis is an HTTP GET request. When making the request, use `name` Path Variable under the `Params` of request with the actual name of the image you want to retrieve.\n\n### Response\n\nThe response returns a status code of 200 and the content type is \"image/jpeg\". However, the response body is empty or null."
+			},
+			"response": []
+		},
+		{
+			"name": "Login - Signin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Extract token\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.collectionVariables.set(\"auth_token\", jsonData.data.accessToken);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"first@mailinator.com\",\r\n    \"password\":\"first123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_base_url}}api/auth/signin/",
+					"host": [
+						"{{local_base_url}}api"
+					],
+					"path": [
+						"auth",
+						"signin",
+						""
+					]
+				},
+				"description": "### API Request Description\n\nThis endpoint is used to authenticate a user by signing in. The request should be sent as an HTTP POST to {{local_base_url}}api/auth/signin/ with the following payload in the raw request body:\n\n``` json\n{\n    \"email\": \"string\",\n    \"password\": \"string\"\n}\n\n ```\n\n### API Response\n\nThe response to the request will have a status code of 201 and a content type of application/json. The response body will be in the following JSON schema:\n\n``` json\n{\n    \"data\": {\n        \"id\": \"number\",\n        \"email\": \"string\",\n        \"accessToken\": \"string\"\n    },\n    \"message\": \"string\"\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Register - Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"second@mailinator.com\",\r\n    \"password\":\"sec123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_base_url}}api/auth/signup/",
+					"host": [
+						"{{local_base_url}}api"
+					],
+					"path": [
+						"auth",
+						"signup",
+						""
+					]
+				},
+				"description": "### Sign Up\n\nThis endpoint allows users to sign up by creating a new account.\n\n#### Request Body\n\n- `email` (string): The email address of the user.\n    \n- `password` (string): The password for the new account.\n    \n\n#### Response\n\n- Status: 201 Created\n    \n- Content-Type: application/json\n    \n- `message` (string): A message confirming the success of the sign-up process."
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "variable_key",
+			"value": ""
+		},
+		{
+			"key": "auth_token",
+			"value": ""
+		}
+	]
+}
