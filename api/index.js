@@ -77,6 +77,4 @@ server.listen(PORT, (err) => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-module.exports = {
-  server: server,
-};
+module.exports = server;
