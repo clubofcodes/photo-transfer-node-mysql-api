@@ -61,10 +61,6 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to Node+MySql APIs!!" });
 });
 
-module.exports = {
-  socketObj: io,
-};
-
 require("../routes/user.routes")(app);
 require("../routes/image.routes")(app);
 
@@ -77,4 +73,7 @@ server.listen(PORT, (err) => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-module.exports = app;
+module.exports = {
+  socketObj: io,
+  server: server,
+};
